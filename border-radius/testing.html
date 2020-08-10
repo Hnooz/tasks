@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+
+    <style>
+        :root{
+            
+            --test-border-top-left:4px;
+            --test-border-top-right:4px;
+            --test-border-buttom-left:4px;
+            --test-border-buttom-right:4px;
+        }
+
+        .test{
+            /* background-color: var(--test-bg-color,black); */
+            background-image: url('Screenshot from 2020-08-03 19-12-50.png');
+            background-size: cover;
+            border-radius: var(--test-border-top-left) var(--test-border-top-right) var(--test-border-buttom-left) var(--test-border-buttom-right);
+            padding: 100px;
+            border: solid;
+            /* margin: 100px; */
+            width: 50%;
+            height: 100%;
+        }
+
+        .input_top_left,.input_top_right,.input_buttom_left,.input_buttom_right{
+            margin-top: 20px;
+            width: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="test"></div>
+    
+    <input id="input1" class="input_top_left" type="text">
+    <input id="input2" class="input_top_right" type="text">
+    <input id="input3" class="input_buttom_left" type="text">
+    <input id="input4" class="input_buttom_right" type="text">
+
+    <button onclick="copy()">Copy Border Radius</button>
+    <script>
+
+
+    let top_left = document.querySelector('.input_top_left');
+    let top_right = document.querySelector('.input_top_right');
+    let buttom_left = document.querySelector('.input_buttom_left');
+    let buttom_right = document.querySelector('.input_buttom_right');
+    let test = document.getElementsByClassName('test')
+
+    top_left.addEventListener('change', function(){
+        document.documentElement.style
+    .setProperty('--test-border-top-left', top_left.value +'px');
+    });
+
+    top_right.addEventListener('change', function(){
+        document.documentElement.style
+    .setProperty('--test-border-top-right', top_right.value +'px');
+    });
+
+    buttom_left.addEventListener('change', function(){
+        document.documentElement.style
+    .setProperty('--test-border-buttom-left', buttom_left.value +'px');
+    });
+
+    buttom_right.addEventListener('change', function(){
+        document.documentElement.style
+    .setProperty('--test-border-buttom-right', buttom_right.value +'px');
+    });
+
+    function copyinput(border_radius){
+        var el = document.createElement('textarea');
+
+        el.value = border_radius;
+
+        document.body.appendChild(el);
+
+        el.select();
+
+        document.execCommand('copy');
+
+        document.body.removeChild(el);
+    }
+
+    function copy() {
+
+    var copyText1 = document.getElementById("input1");
+    var copyText2 = document.getElementById("input2");
+    var copyText3 = document.getElementById("input3");
+    var copyText4 = document.getElementById("input4");
+    var test = "border-radius: "+ copyText1.value + "px " + copyText2.value + "px "
+                                + copyText3.value + "px " + copyText4.value + "px";
+
+    copyinput(test);
+
+}
+
+    </script>
+</body>
+</html>
